@@ -11,9 +11,36 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
+void	ft_p(size_t p, int *len)
+{
+	char	str[25];
+	int	i;
+	char	base_char;
+	
+	base_char = "0123456789abdef";
+	write(1, "0x", 2);
+	(*len) += 2;
+	if (p == 0)
+	{
+		ft_putchar_len("0", len);
+		return ;
+	}
+	while (p != 0)
+	{
+		str[i] = base_char[p % 16];
+		p /= 16;
+		i++;
+	}
+	while (i--)
+	{
+		ft_putchar_len(str[i], len);
+	}
+	
+}
+
 void	ft_hex(unsigned int x, int *len, char hex)
 {
-	char	str[25]
+	char	str[25];
 	int	i;
 	char	*base_char;
 	
